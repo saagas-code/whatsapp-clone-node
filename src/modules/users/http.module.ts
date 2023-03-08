@@ -4,8 +4,12 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from 'common/strategy/jwt.strategy';
 
 import { UserDatabaseModule } from './database.module';
+import { AuthUserController } from './services/authUser/AuthUserController';
+import { AuthUserUseCase } from './services/authUser/AuthUserUseCase';
 import { CreateUserController } from './services/createUser/CreateUserController';
 import { CreateUserService } from './services/createUser/CreateUserService';
+import { RequestUserController } from './services/requestUser/RequestUserController';
+import { RequestUserUseCase } from './services/requestUser/RequestUserUseCase';
 
 
 @Module({
@@ -21,9 +25,13 @@ import { CreateUserService } from './services/createUser/CreateUserService';
   ],
   controllers: [
     CreateUserController,
+    AuthUserController,
+    RequestUserController
   ],
   providers: [
     CreateUserService,
+    AuthUserUseCase,
+    RequestUserUseCase,
     JwtStrategy
   ],
   exports: [

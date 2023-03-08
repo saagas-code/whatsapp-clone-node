@@ -1,6 +1,15 @@
 import { User } from "@users/entities/User";
 
-export class EmployeeViewModel {
+export interface IUserViewHTTP {
+  id: string,
+  number: string,
+  name: string
+  avatar: string
+  created_at: Date,
+  updated_at: Date,
+}
+
+export class UserViewModel {
   static toHTTP(user: User) {
     return {
       id: user.id,
