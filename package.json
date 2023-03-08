@@ -81,7 +81,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "^@employee/(.*)$": "<rootDir>/../src/modules/employee/$1",
+      "^@user/(.*)$": "<rootDir>/../src/modules/user/$1",
       "^@access/(.*)$": "<rootDir>/../src/modules/accesss/$1",
       "^@instances/(.*)$": "<rootDir>/../src/instances/$1"
     }
