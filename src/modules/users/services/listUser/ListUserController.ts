@@ -1,19 +1,22 @@
 
-import { Controller, Body, Get } from "@nestjs/common"
-import { CreateUserDTO } from "@users/DTOs/CreateUserDTO";
-import { ListUserService } from "./LIstUserService";
+import { Controller, Get, UseGuards } from "@nestjs/common"
+import { AuthGuard } from "@nestjs/passport";
+import { GetUser } from "@users/decorators/user.decorator";
+import { IUserViewHTTP, UserViewModel } from "@users/viewsModels/ListUserView";
+import { ListUserUseCase } from "./ListUserUseCase";
 
 
 @Controller("/users")
+@UseGuards(AuthGuard("jwt"))
 export class ListUserController {
   constructor(
-    private listEmployeeService: ListUserService,
+    private listUserUseCase: ListUserUseCase,
   ) {}
   
   @Get("/")
-  async handle() {
-    // const list = await this.listEmployeeService.execute()
-    // return list
+  async handle(@GetUser() user: IUserViewHTTP) {
+    const list = await this.listUserUseCase.execute(user.id)
+    return list.map(UserViewModel.toHTTP);
   }
 
 }
